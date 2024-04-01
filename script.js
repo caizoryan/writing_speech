@@ -112,7 +112,7 @@ const Mother = () => {
   return div(
     p({ class: "to-type" }, to_type.map((x) => x.word).join(" ")),
     typed_dom,
-    h("input", { type: "text", oninput: (e) => typed.set(e.target.value) })
+    h("input", { class: "bar", type: "text", oninput: (e) => typed.set(e.target.value) })
   );
 };
 

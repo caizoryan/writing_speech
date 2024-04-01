@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;800&family=Xanh+Mono:ital@0;1&display=swap');
+
 :root{
   --base-color: #fff;
   --highlight-color: #fff;
   --secondary-color: rgb(150);
+}
+
+@font-face {
+  font-family: 'FraktionSans';
+  src: url('./fonts/Sans/PPFraktionSans-Variable.ttf') format('truetype');
 }
 
 *{
@@ -9,6 +16,7 @@
   padding: 0;
   box-sizing: border-box;
   color: var(--base-color);
+  font-family: 'FraktionSans', sans-serif;
 }
 
 #root{
@@ -21,39 +29,54 @@
 }
 
 .to-type {
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'FraktionSans', sans-serif; */
+  font-family: "Xanh Mono", monospace;
   font-size: 1.2em;
   color: var(--secondary-color);
   position: fixed;
   top: 25vw;
-  left: 25vw;
+  left: 35vw;
   width: 50vw;
   text-transform: lowercase;
   transition: color .3s;
+  transform: rotate(-2deg) translateX(10px);
 }
 
 .typed {
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'FraktionSans', sans-serif; */
+  font-family: "Xanh Mono", monospace;
   font-size: 1.2em;
   color: var(--base-color);
   position: fixed;
   top: 25vw;
-  left: 25vw;
+  left: 35vw;
   width: 50vw;
   transition: color .3s;
+  transform: rotate(-1deg);
 }
 
-input{
+.bar {
   all: unset;
-  color: var(--base-color);
-  padding: 50px;
-  border: 1px solid #ccc;
-  width: 50vw;
+  border: none;
   font-size: .5em;
+
+  position: fixed;
+  top: 30vw;
+  left: 20vw;
+  width: 50vw;
+  height: 10px;
+
+  padding: 10px;
+  box-shadow: 0 0 50px 19px rgba(255, 255, 255, 0.08);
+  background-color: var(--secondary-color);
+  color: var(--base-color);
+
+  transform: rotate(3deg);
+  transition: background-color .3s;
 }
 
 #highlight {
-  color: var(--highlight-color);
+  color: black;
   background-color: #DA9F60;
   transition: all .3s;
 }
