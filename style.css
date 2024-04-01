@@ -4,6 +4,7 @@
   --base-color: #fff;
   --highlight-color: #fff;
   --secondary-color: rgb(150);
+  --base-shadow-color: rgba(255, 255, 255, 0.03);
 }
 
 @font-face {
@@ -38,8 +39,22 @@
   left: 35vw;
   width: 50vw;
   text-transform: lowercase;
-  transition: color .3s;
-  transform: rotate(-2deg) translateX(10px);
+  /* transition: color .3s; */
+  transform: rotate(-4deg) translateX(10px);
+  animation: float-to-type 30s infinite;
+}
+
+@keyframes float-to-type {
+  0% {
+    transform: rotate(-4deg) translateX(10px);
+  }
+  50% {
+    transform: rotate(-2deg) translateX(20px);
+  }
+  100% {
+    transform: rotate(-4deg) translateX(10px);
+  }
+
 }
 
 .typed {
@@ -53,6 +68,22 @@
   width: 50vw;
   transition: color .3s;
   transform: rotate(-1deg);
+
+  box-shadow: 0 0 50px 19px var(--base-shadow-color);
+  animation: float-to-typed 25s infinite;
+}
+
+@keyframes float-to-typed {
+  0% {
+    transform: rotate(-1deg) translateX(10px);
+  }
+  50% {
+    transform: rotate(2deg) translateX(20px);
+  }
+  100% {
+    transform: rotate(-1deg) translateX(10px);
+  }
+
 }
 
 .bar {
@@ -77,7 +108,7 @@
 
 #highlight {
   color: black;
-  background-color: #DA9F60;
+  background-color: #eee;
   transition: all .3s;
 }
 
