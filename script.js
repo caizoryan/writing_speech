@@ -1,35 +1,53 @@
-import { eff, hogaya, mem } from "./solid_monke/solid_monke.js";
-import { each } from "./solid_monke/solid_monke.js";
-import { p, h, render, $, div, h1, inn, sig, eff_on } from "./solid_monke/solid_monke.js";
-import { to_type, get_audio, play_sample, check_last_word } from "./speech_engine.js";
+import { p, h, simple_dukan, render, $, div, each, sig, eff_on, eff, hogaya, mem, inn } from "./solid_monke/solid_monke.js";
+import { check_last_word } from "./speech_engine.js";
 import { map_value, find_sequence } from "./utils.js";
+import { sequence_library, phrase_library } from "./sequence_library.js";
 
-// basic stuff right, lets think through this
-// -> a variable that holds what needs to be typed
-// -> another one that holds what is being typed
-//
-// -> each word that needs to be typed has a time and audio file attatched to it
-// -> each time space bar is hit and it is the word that needs to be typed, the audio file is played
-//
+let lastTime, ctx, canvas;
+
 const background = new Audio("./soundtrack.mp3")
 background.volume = 0.5
 background.loop = true
-const r = document.querySelector(':root');
+
+export const r = document.querySelector(':root');
+
+export const subtext = simple_dukan([
+  {
+    text: "",
+    visible: false
+  },
+  {
+    text: "",
+    visible: false
+  }
+
+])
 
 export const updated = () => update = false
 export const reset_last_word = () => since_last_word = 0
+let safe = (fun) => (fun) ? fun() : null
+
+let entry_text = phrase_library.find((p) => p.sign === "entry").phrase
+export let text_to_type = sig(entry_text)
 
 
 export let typed = sig("")
+export let since_last_word = 0;
+
 let typed_words = mem(() => typed.is().split(" "))
 let update = false
-export let since_last_word = 0;
-let lastTime, ctx, canvas;
 
 eff_on(typed.is, () => {
   if (background.paused) background.play()
   update = true
 })
+
+export const scene_reset = () => {
+  typed.set("")
+  background.playbackRate = 1
+  subtext.forEach((s) => { s.text = ""; s.visible = false })
+  reset_last_word()
+}
 
 const fade_colors = (val) => {
   let color = map_value(val, 0, 10, 1, 0);
@@ -39,34 +57,6 @@ const fade_colors = (val) => {
   r.style.setProperty('--secondary-color', `rgb(${as_155}, ${as_155}, ${as_155})`);
 }
 
-const scene_reset = () => {
-  typed.set("")
-  background.playbackRate = 1
-  reset_last_word()
-}
-
-const sequence_library = [
-  {
-    sign: "works",
-    sequence: ["will", "work"],
-    onclick: () => {
-      // change the layout a bit
-      // play a transition image sequence
-      text_to_type.set("hello world!")
-      scene_reset()
-    },
-    hover_in: () => {
-      // display text in background
-    },
-    hover_out: () => {
-      // remove text from background
-    }
-  },
-  {
-    sign: "entry",
-    sequence: ["hello", "world"],
-  }
-]
 
 let found = mem(() => {
   let finds = []
@@ -80,10 +70,10 @@ let found = mem(() => {
   return finds
 })
 
-let safe = (fun) => (fun) ? fun() : null
 
 const word = (word, i) => {
   let sign
+
   for (const find of found()) {
     let f = find.i
     let len = find.sequence.length
@@ -92,8 +82,10 @@ const word = (word, i) => {
 
   if (sign) {
     let model = sequence_library.find((s) => s.sign === sign)
+    let is_clickable = model.onclick ? true : false
     return h("span", {
       id: "highlight",
+      class: is_clickable ? "clickable" : "hoverable",
       onmouseenter: () => { safe(model.hover_in); background.playbackRate = 5 },
       onmouseleave: () => { safe(model.hover_out); background.playbackRate = 1 },
       onclick: () => {
@@ -104,10 +96,50 @@ const word = (word, i) => {
   else return h("span", word + " ")
 
 }
+
 const typed_dom = () => div({ class: "typed" }, () => each(typed_words(), (w, i) => word(w, i())))
 
+export let video_library = [
+  {
+    sign: "construction",
+    src: "./video/p1.mp4",
+    timer_normal: 3000,
+    timer: 3000,
+  },
+]
 
-const text_to_type = sig("This will work")
+function tick(delta) {
+  play_video(ctx, this.video)
+  this.timer -= delta
+  if (this.timer <= 0) {
+    this.video.pause()
+    this.timer = this.timer_normal
+    video_queue.shift()
+  }
+}
+
+export function transition(video_item) {
+  video_queue.push(video_item)
+  document.querySelector(".interaction-layer").style.opacity = "0"
+  inn(video_item.timer, () => {
+    document.querySelector(".interaction-layer").style.opacity = "1"
+  })
+}
+
+video_library.forEach(async (x) => {
+  var video = document.createElement("video");
+  video.setAttribute("src", x.src);
+  x.video = video
+})
+
+let video_queue = []
+
+function play_video(ctx, video) {
+  video.play()
+  let w = canvas.width
+  let h = canvas.height
+  ctx.drawImage(video, w / 4, h / 4, w / 2, h / 2)
+}
 
 const canvas_renderer = () => {
   hogaya(() => {
@@ -125,20 +157,35 @@ function animate(time) {
   if (!lastTime) lastTime = time;
   let deltaTime = time - lastTime;
   lastTime = time;
+
   if (update) check_last_word();
   if (deltaTime) since_last_word += deltaTime;
 
   fade_colors(since_last_word / 1000)
 
+  if (video_queue[0]) {
+    tick.call(video_queue[0], deltaTime)
+  } else {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
   requestAnimationFrame(animate);
 }
 
-animate();
+
+const sub_text_dom = () => {
+  return div(
+    { class: "subtext-layer" },
+    () => each(subtext, (s, i) => {
+      return p({ id: "subtext-" + (parseInt(i()) + 1), class: () => s.visible ? "subtext" : "subtext hidden" }, () => s.text)
+    })
+  )
+}
 
 const Mother = () => {
   return div(
     div({ class: "canvas-layer" }, canvas_renderer),
-    div({ class: "text-layer" }),
+    div({ class: "text-layer" }, sub_text_dom),
     div(
       { class: "interaction-layer" },
       p({ class: "to-type" }, text_to_type.is),
@@ -149,5 +196,6 @@ const Mother = () => {
 };
 
 render(Mother, $("#root"));
+animate();
 
 

@@ -21,44 +21,61 @@ const play_sample = (audioBuffer) => {
 }
 
 const to_type = [
-  {
-    word: "Hello",
-    audio: await get_file("./audio_files/1_hello.mp3"),
-  },
-  {
-    word: "World",
-    audio: await get_file("./audio_files/2_world.mp3"),
-  },
-  {
-    word: "Do",
-    audio: await get_file("./audio_files/3_do.mp3"),
-  },
-
-  {
-    word: "you",
-    audio: await get_file("./audio_files/4_you.mp3"),
-  },
-
-  {
-    word: "think",
-    audio: await get_file("./audio_files/5_think.mp3"),
-  },
-
-  {
-    word: "this",
-    audio: await get_file("./audio_files/6_this.mp3"),
-  }
-  ,
-  {
-    word: "will",
-    audio: await get_file("./audio_files/7_will.mp3"),
-  }
-  ,
-  {
-    word: "work",
-    audio: await get_file("./audio_files/8_work.mp3"),
-  }
+  { word: "a" },
+  { word: "already" },
+  { word: "be" },
+  { word: "bibliography" },
+  { word: "collage" },
+  { word: "construction" },
+  { word: "do" },
+  { word: "except" },
+  { word: "existing" },
+  { word: "hello" },
+  { word: "here" },
+  { word: "is" },
+  { word: "must" },
+  { word: "memory" },
+  { word: "nothing" },
+  { word: "of" },
+  { word: "original" },
+  { word: "place" },
+  { word: "take" },
+  { word: "the" },
+  { word: "think" },
+  { word: "this" },
+  { word: "to" },
+  { word: "viewed" },
+  { word: "website" },
+  { word: "will" },
+  { word: "work" },
+  { word: "world" },
+  { word: "you" },
+  { word: "with" },
+  { word: "what" },
+  { word: "storage" },
+  { word: "speech" },
+  { word: "software" },
+  { word: "permanence" },
+  { word: "logic" },
+  { word: "ephemeral" },
+  { word: "enduring" },
+  { word: "enables" },
+  { word: "conflates" },
+  { word: "but" },
+  { word: "onlv" },
+  { word: "machine" },
+  { word: "in" },
+  { word: "image" },
+  { word: "human" },
+  { word: "frozen" },
+  { word: "front" },
+  { word: "freezes" },
+  { word: "eyes" },
 ]
+
+to_type.forEach(async (x) => {
+  x.audio = await get_file(`./audio_files/${x.word}.mp3`)
+})
 
 
 
