@@ -82,7 +82,7 @@ const word = (word, i) => {
 
   if (sign) {
     let model = sequence_library.find((s) => s.sign === sign)
-    let is_clickable = model.onclick ? true : false
+    let is_clickable = model.destination ? true : false
     return h("span", {
       id: "highlight",
       class: is_clickable ? "clickable" : "hoverable",
@@ -98,8 +98,11 @@ const word = (word, i) => {
       },
       onclick: () => {
         if (model.destination) {
-          text_to_type.set(phrase_library.find((p) => p.sign === "walk").phrase)
-          if (model.memory) transition(video_queue.push(video_library.find((v) => v.sign === model.memory)))
+          text_to_type.set(phrase_library.find((p) => p.sign === model.destination).phrase)
+          if (model.memory) {
+            let obj = video_library.find((v) => v.sign === model.memory)
+            if (obj) transition(obj)
+          }
           scene_reset()
         }
       }
@@ -111,12 +114,18 @@ const word = (word, i) => {
 
 const typed_dom = () => div({ class: "typed" }, () => each(typed_words(), (w, i) => word(w, i())))
 
-export let video_library = [
+let video_library = [
   {
-    sign: "construction",
+    sign: "memory",
+    src: "./memory/memory3.mp4",
+    timer_normal: 5200,
+    timer: 5200,
+  },
+  {
+    sign: "walk",
     src: "./memory/memory1.mp4",
-    timer_normal: 1200,
-    timer: 1200,
+    timer_normal: 1800,
+    timer: 1800,
   },
 ]
 
@@ -148,12 +157,12 @@ function tick(delta) {
   }
 }
 
-export function transition(video_item) {
+function transition(video_item) {
   video_queue.push(video_item)
   document.querySelector(".interaction-layer").style.opacity = "0"
-  inn(video_item.timer, () => {
+  setTimeout(() => {
     document.querySelector(".interaction-layer").style.opacity = "1"
-  })
+  }, video_item.timer)
 }
 
 video_library.forEach(async (x) => {
