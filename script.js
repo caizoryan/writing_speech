@@ -52,6 +52,41 @@ let safe = (fun) => (fun) ? fun() : null
 let entry_text = phrase_library.find((p) => p.sign === "entry").phrase
 export let text_to_type = sig(entry_text)
 
+let words_to_animate = []
+
+function refresh_words() {
+  words_to_animate = []
+  text_to_type.is().split(" ").forEach((w) => {
+    let obj = {}
+    obj.word = w
+    let x = Math.random() * window.innerWidth
+    let y = Math.random() * window.innerHeight
+    obj.pos = { x, y }
+    obj.timer = Math.random() * 5000 + 3000
+
+    obj.tick = function(delta, ctx) {
+
+      if (delta > 0) {
+        this.timer -= delta
+      }
+
+      ctx.font = "6px monospace"
+      let alpha = map_value(this.timer, 0, 8000, 0, 1)
+      ctx.fillStyle = "rgba(255, 255, 255, " + alpha + ")"
+      ctx.fillText(this.word, this.pos.x, this.pos.y)
+
+      if (this.timer <= 0) {
+        this.timer = Math.random() * 5000
+        this.pos.x = Math.random() * window.innerWidth
+        this.pos.y = Math.random() * window.innerHeight
+      }
+    }
+
+    words_to_animate.push(obj)
+  })
+}
+
+
 
 export let typed = sig("")
 export let since_last_word = 0;
@@ -69,6 +104,7 @@ export const scene_reset = () => {
   background.playbackRate = 1
   subtext.forEach((s) => { s.text = ""; s.visible = false })
   reset_last_word()
+  refresh_words()
 }
 
 const fade_colors = (val) => {
@@ -127,6 +163,7 @@ const word = (word, i) => {
             let obj = memory_library.find((v) => v.sign === model.memory)
             if (obj) transition(obj)
           }
+
           scene_reset()
         }
       }
@@ -138,27 +175,7 @@ const word = (word, i) => {
 
 const typed_dom = () => div({ class: "typed" }, () => each(typed_words(), (w, i) => word(w, i())))
 
-function remove_duplicates(arr) {
-  return [...new Set(arr)]
-}
-
-let all_words = phrase_library.map((p) => p.phrase.split(" ")).flat()
-all_words = remove_duplicates(all_words)
-
-console.log(all_words)
-console.log(to_type.map((x) => x.word))
-
-let not_there = []
-for (const w of all_words) {
-  let found = to_type.find((x) => x.word.toLowerCase() === w.toLowerCase())
-  if (!found) not_there.push(w)
-}
-
-console.log(not_there)
-
-
 function shuffle_subtext() {
-
   let w1 = map_value(Math.random(), 0, 1, 30, 50)
   let w2 = map_value(Math.random(), 0, 1, 30, 50)
 
@@ -186,6 +203,8 @@ function tick(delta) {
 }
 
 function transition(video_item) {
+  let top = map_value(Math.random(), 0, 1, 50, 70)
+  r.style.setProperty('--bar-top', `${top}vh`);
 
   video_item.video.currentTime = 0
   video_queue.push(video_item)
@@ -193,6 +212,7 @@ function transition(video_item) {
   setTimeout(() => {
     document.querySelector(".interaction-layer").style.opacity = "1"
   }, video_item.timer)
+
 }
 
 memory_library.forEach(async (x) => {
@@ -239,6 +259,8 @@ function animate(time) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
+  words_to_animate.forEach((w) => w.tick(deltaTime, ctx))
+
   requestAnimationFrame(animate);
 }
 
@@ -266,6 +288,8 @@ const Mother = () => {
 };
 
 render(Mother, $("#root"));
+
+refresh_words()
 animate();
 
 

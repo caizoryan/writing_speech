@@ -5,7 +5,8 @@ export const sequence_library = [
     destination: "walk",
     memory: "walk",
     subtext: [
-      `I talk of multiple walks here, one of speech, of words, of elements that produce the semantic meaning, but also another. The walk, that is taken by the energy around the circuit, in cycles for this page to be rendered, held together, as a place for our memory to harbor as we subordinate our cognition to it.`
+      `I talk of multiple walks here, one of yours, as you will walk through the speech, the words, the elements here that produce the semantic meaning, but also another.
+      The walk, that is taken by the energy around the circuit, in cycles for this page to be rendered, held together, as a place for our memory to harbor as we subordinate our cognition to it.`
     ],
   },
   {
@@ -135,7 +136,7 @@ export const phrase_library = [
   },
   {
     sign: "walk",
-    phrase: `Memory of the machine freezes the image in front of you, frozen for human eyes only.`,
+    phrase: `Memory of the machine freezes the image in front of you, frozen for human eyes only. What of speech?`,
     log: `also see 'what of speech?'`
   },
   {

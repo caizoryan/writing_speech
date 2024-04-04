@@ -12,6 +12,8 @@
   --bar-rotate-min: -3deg;
   --bar-rotate-max: 5deg;
 
+  --top-offset: 15vh;
+
   --subtext-1-left: 10vw;
   --subtext-1-top: 10vh;
   --subtext-1-width: 30vw;
@@ -54,8 +56,8 @@
   font-size: 1.2em;
   color: var(--secondary-color);
   position: fixed;
-  top: 25vw;
-  left: 35vw;
+  top: calc(var(--bar-top) - var(--top-offset));
+  left: calc(var(--bar-left) + 15vw);
   width: 40vw;
   font-style: italic;
   /* transition: color .3s; */
@@ -82,8 +84,8 @@
   font-size: 1.2em;
   color: var(--base-color);
   position: fixed;
-  top: 25vw;
-  left: 35vw;
+  top: calc(var(--bar-top) - var(--top-offset));
+  left: calc(var(--bar-left) + 15vw);
   width: 40vw;
   transition: color .3s;
   transform: rotate(-1deg);
