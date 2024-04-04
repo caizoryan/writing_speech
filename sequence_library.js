@@ -101,6 +101,7 @@ export const sequence_library = [
   {
     sign: "software_conceals_labour",
     sequence: ["conceals", "the", "machine", "labour"],
+    destination: "labour",
     subtext: [
       `The separation of software from hardware also enables the separation of certain programming tasks in software from each other. Hence the rise of structured programming as a way of managing quality and labour discipline when programming becomes an industry. Structured programming enables a division of labour and secures the running of the machine from routine programming tasks.`,
       `The result might be less efficient from the point of view of organising the "work" of the machine but more efficient from the point of view of organising human labour. Structured programming recruits the machine into the task of managing itself. It is a step towards object-oriented program-ming, which further hides the machine, and also the interior of other "Objects", from the ones with which the programmer is tasked within the division of labor.`
@@ -109,6 +110,7 @@ export const sequence_library = [
   {
     sign: "action",
     sequence: ["held", "together", "in", "action"],
+    destination: "speech",
     subtext: [
       `Memory is not a static but rather an active process. A memory must be held in order to keep it from moving or fading. Again, memory does not equal storage. Although one can conceivably store a memory, storage usually refers to something material or substantial, as well as to its physical location: a store is both what is stored and where it is stored.`,
       `Software is axiomatic. As a first principle, it fastens in place a certain logic of cause and effect, a causal pleasure that erases execution and reduces programming to an act of writing.`
@@ -148,7 +150,7 @@ export const phrase_library = [
   },
   {
     sign: "ephemeral",
-    phrase: "Memory, like speech, is ephemeral, it leaves a trace that slowly dissipates. To endure it, it must be held together in action --- the ephemeral has been conflated with the enduring, (see ephemeral with enduring)",
+    phrase: "Memory, like speech, is ephemeral, it leaves a trace that slowly dissipates. To endure it, it must be held together in action --- the ephemeral has been conflated with the enduring",
     log: `I want to bring back the emphasis on action. It might be pushing hard, but I thnink software, as it heavily works through metaphors reduces
       the workings of the world to representations. This leads to a kind of passivity, a kind of inaction that we see in our generation.`
 

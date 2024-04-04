@@ -16,7 +16,7 @@ const play_sample = (audioBuffer) => {
   const source = audioContext.createBufferSource();
 
   const gainNode = audioContext.createGain();
-  gainNode.gain.value = .6;
+  gainNode.gain.value = .3;
 
   source.playbackRate.value = calculate_playback();
   source.buffer = audioBuffer;
@@ -96,6 +96,35 @@ const to_type = [
   { word: "conceal" },
   { word: "and" },
   { word: "also" },
+  { word: "walk" },
+  { word: "taken" },
+  { word: "life" },
+  { word: "trace" },
+  { word: "slowly" },
+  { word: "dissipates" },
+  { word: "endure" },
+  { word: "it" },
+  { word: "held" },
+  { word: "together" },
+  { word: "action" },
+  { word: "has" },
+  { word: "been" },
+  { word: "conflated" },
+  { word: "conceals" },
+  { word: "its" },
+  { word: "source" },
+  { word: "through" },
+  { word: "execution" },
+  { word: "doing" },
+  { word: "labour" },
+  { word: "organises" },
+  { word: "structures" },
+  { word: "more" },
+  { word: "importantly" },
+  { word: "macro" },
+  { word: "sense" },
+  { word: "power" },
+  { word: "society" },
 ]
 
 

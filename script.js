@@ -1,5 +1,5 @@
 import { p, h, simple_dukan, render, $, div, each, sig, eff_on, eff, hogaya, mem, inn } from "./solid_monke/solid_monke.js";
-import { check_last_word } from "./speech_engine.js";
+import { check_last_word, get_audio, to_type } from "./speech_engine.js";
 import { map_value, find_sequence } from "./utils.js";
 import { sequence_library, phrase_library } from "./sequence_library.js";
 
@@ -120,7 +120,9 @@ const word = (word, i) => {
       },
       onclick: () => {
         if (model.destination) {
-          text_to_type.set(phrase_library.find((p) => p.sign === model.destination).phrase)
+          let phrase = phrase_library.find((p) => p.sign === model.destination)
+          text_to_type.set(phrase.phrase)
+          if (phrase.log) console.log(phrase.log)
           if (model.memory) {
             let obj = memory_library.find((v) => v.sign === model.memory)
             if (obj) transition(obj)
@@ -135,6 +137,24 @@ const word = (word, i) => {
 }
 
 const typed_dom = () => div({ class: "typed" }, () => each(typed_words(), (w, i) => word(w, i())))
+
+function remove_duplicates(arr) {
+  return [...new Set(arr)]
+}
+
+let all_words = phrase_library.map((p) => p.phrase.split(" ")).flat()
+all_words = remove_duplicates(all_words)
+
+console.log(all_words)
+console.log(to_type.map((x) => x.word))
+
+let not_there = []
+for (const w of all_words) {
+  let found = to_type.find((x) => x.word.toLowerCase() === w.toLowerCase())
+  if (!found) not_there.push(w)
+}
+
+console.log(not_there)
 
 
 function shuffle_subtext() {
