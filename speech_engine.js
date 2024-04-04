@@ -14,9 +14,14 @@ const get_file = async (path) => {
 
 const play_sample = (audioBuffer) => {
   const source = audioContext.createBufferSource();
+
+  const gainNode = audioContext.createGain();
+  gainNode.gain.value = .6;
+
   source.playbackRate.value = calculate_playback();
   source.buffer = audioBuffer;
-  source.connect(audioContext.destination);
+  source.connect(gainNode);
+  gainNode.connect(audioContext.destination);
   source.start();
 }
 
@@ -36,11 +41,9 @@ const to_type = [
   { word: "must" },
   { word: "memory" },
   { word: "nothing" },
-  { word: "of" },
   { word: "original" },
   { word: "place" },
   { word: "take" },
-  { word: "the" },
   { word: "think" },
   { word: "this" },
   { word: "to" },
@@ -71,7 +74,30 @@ const to_type = [
   { word: "front" },
   { word: "freezes" },
   { word: "eyes" },
+  { word: "words" },
+  { word: "wisdom" },
+  { word: "which" },
+  { word: "vibrate" },
+  { word: "unities" },
+  { word: "timeless" },
+  { word: "they" },
+  { word: "their" },
+  { word: "the" },
+  { word: "that" },
+  { word: "rythms" },
+  { word: "roots" },
+  { word: "own" },
+  { word: "of" },
+  { word: "melodies" },
+  { word: "history" },
+  { word: "heir" },
+  { word: "have" },
+  { word: "harmonies" },
+  { word: "conceal" },
+  { word: "and" },
+  { word: "also" },
 ]
+
 
 to_type.forEach(async (x) => {
   x.audio = await get_file(`./audio_files/${x.word}.mp3`)
@@ -80,7 +106,7 @@ to_type.forEach(async (x) => {
 
 
 function calculate_playback() {
-  let playback_offset = map_value(since_last_word, 0, 2500, 0, .5)
+  let playback_offset = map_value(since_last_word, 0, 3500, 0, .7)
   return 1.25 - playback_offset
 }
 

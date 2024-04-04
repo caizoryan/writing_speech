@@ -6,7 +6,7 @@ import { sequence_library, phrase_library } from "./sequence_library.js";
 let lastTime, ctx, canvas;
 
 const background = new Audio("./soundtrack.mp3")
-background.volume = 0.5
+background.volume = 0.6
 background.loop = true
 
 export const r = document.querySelector(':root');
@@ -86,10 +86,22 @@ const word = (word, i) => {
     return h("span", {
       id: "highlight",
       class: is_clickable ? "clickable" : "hoverable",
-      onmouseenter: () => { safe(model.hover_in); background.playbackRate = 5 },
-      onmouseleave: () => { safe(model.hover_out); background.playbackRate = 1 },
+      onmouseenter: () => {
+        if (model.subtext[0]) { subtext[0].text = model.subtext[0]; subtext[0].visible = true }
+        if (model.subtext[1]) { subtext[1].text = model.subtext[1]; subtext[1].visible = true }
+        shuffle_subtext();
+        background.playbackRate = 5
+      },
+      onmouseleave: () => {
+        subtext.forEach((s) => s.visible = false)
+        background.playbackRate = 1
+      },
       onclick: () => {
-        model.onclick()
+        if (model.destination) {
+          text_to_type.set(phrase_library.find((p) => p.sign === "walk").phrase)
+          if (model.memory) transition(video_queue.push(video_library.find((v) => v.sign === model.memory)))
+          scene_reset()
+        }
       }
     }, word + " ")
   }
@@ -102,11 +114,29 @@ const typed_dom = () => div({ class: "typed" }, () => each(typed_words(), (w, i)
 export let video_library = [
   {
     sign: "construction",
-    src: "./video/p1.mp4",
-    timer_normal: 3000,
-    timer: 3000,
+    src: "./memory/memory1.mp4",
+    timer_normal: 1200,
+    timer: 1200,
   },
 ]
+
+function shuffle_subtext() {
+
+  let w1 = map_value(Math.random(), 0, 1, 30, 50)
+  let w2 = map_value(Math.random(), 0, 1, 30, 50)
+
+  let left1 = Math.floor(Math.random() * 100)
+  let left2 = Math.floor(Math.random() * 100)
+
+  if (left1 + w1 > 100) left1 -= w1
+  if (left2 + w2 > 100) left2 -= w2
+
+  r.style.setProperty('--subtext-1-left', `${left1}vw`);
+  r.style.setProperty('--subtext-2-left', `${left2}vw`);
+
+  r.style.setProperty('--subtext-1-width', `${w1}vw`);
+  r.style.setProperty('--subtext-2-width', `${w2}vw`);
+}
 
 function tick(delta) {
   play_video(ctx, this.video)

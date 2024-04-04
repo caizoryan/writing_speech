@@ -144,7 +144,7 @@
   color: white;
   position: fixed;
   font-size: .9em;
-  transition: opacity .3s;
+  transition: opacity 3s, width .3s;
 }
 
 #subtext-1 {
@@ -161,7 +161,7 @@
 
 .hidden {
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity 3s, width .3s;
 }
 
 #highlight:hover{
