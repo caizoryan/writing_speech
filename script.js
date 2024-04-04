@@ -5,6 +5,28 @@ import { sequence_library, phrase_library } from "./sequence_library.js";
 
 let lastTime, ctx, canvas;
 
+let memory_library = [
+  {
+    sign: "walk",
+    src: "./memory/memory1.mp4",
+    timer_normal: 1400,
+    timer: 1400,
+  },
+  {
+    sign: "memory",
+    src: "./memory/memory3.mp4",
+    timer_normal: 4500,
+    timer: 4500,
+  },
+
+  {
+    sign: "labour",
+    src: "./memory/memory4.mp4",
+    timer_normal: 4000,
+    timer: 4000,
+  },
+]
+
 const background = new Audio("./soundtrack.mp3")
 background.volume = 0.6
 background.loop = true
@@ -100,7 +122,7 @@ const word = (word, i) => {
         if (model.destination) {
           text_to_type.set(phrase_library.find((p) => p.sign === model.destination).phrase)
           if (model.memory) {
-            let obj = video_library.find((v) => v.sign === model.memory)
+            let obj = memory_library.find((v) => v.sign === model.memory)
             if (obj) transition(obj)
           }
           scene_reset()
@@ -114,20 +136,6 @@ const word = (word, i) => {
 
 const typed_dom = () => div({ class: "typed" }, () => each(typed_words(), (w, i) => word(w, i())))
 
-let video_library = [
-  {
-    sign: "memory",
-    src: "./memory/memory3.mp4",
-    timer_normal: 5200,
-    timer: 5200,
-  },
-  {
-    sign: "walk",
-    src: "./memory/memory1.mp4",
-    timer_normal: 1800,
-    timer: 1800,
-  },
-]
 
 function shuffle_subtext() {
 
@@ -158,6 +166,8 @@ function tick(delta) {
 }
 
 function transition(video_item) {
+
+  video_item.video.currentTime = 0
   video_queue.push(video_item)
   document.querySelector(".interaction-layer").style.opacity = "0"
   setTimeout(() => {
@@ -165,7 +175,7 @@ function transition(video_item) {
   }, video_item.timer)
 }
 
-video_library.forEach(async (x) => {
+memory_library.forEach(async (x) => {
   var video = document.createElement("video");
   video.setAttribute("src", x.src);
   x.video = video
@@ -175,6 +185,7 @@ let video_queue = []
 
 function play_video(ctx, video) {
   video.play()
+
   let w = canvas.width
   let h = canvas.height
   ctx.drawImage(video, w / 4, h / 4, w / 2, h / 2)

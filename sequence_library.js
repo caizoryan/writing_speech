@@ -27,14 +27,14 @@ export const sequence_library = [
   },
   {
     sign: "image",
-    sequence: ["image", "in", "front", "of", "you"],
+    sequence: ["image", "in", "front"],
     subtext: [
       `This website, as it is rendered, is information (an archive of an accumulated past) presented to you through an interface. Thus, as Wolfgang Ernst has argued, digital media is truly time-based media, which, given a screen’s refresh cycle and the dynamic flow of information in cyberspace, turns images, sounds, and text into a discrete moment in time.`
     ]
   },
   {
     sign: "frozen",
-    sequence: ["frozen", "for", "human", "eyes", "only"],
+    sequence: ["frozen", "for", "human", "eyes"],
     subtext: [
       `These images are frozen for human eyes only. Information is dynamic, however, not only because it must move in space on the screen, but also, and more importantly, because it must move within the computer and because degeneration traditionally has made memory possible while simultaneously threatening it.`
     ]
@@ -113,33 +113,55 @@ export const sequence_library = [
       `Memory is not a static but rather an active process. A memory must be held in order to keep it from moving or fading. Again, memory does not equal storage. Although one can conceivably store a memory, storage usually refers to something material or substantial, as well as to its physical location: a store is both what is stored and where it is stored.`,
       `Software is axiomatic. As a first principle, it fastens in place a certain logic of cause and effect, a causal pleasure that erases execution and reduces programming to an act of writing.`
     ]
+  },
+  {
+    sign: "power",
+    sequence: ["power", "structures"],
+    subtext: [
+      `Digital media both program the future and the past. The archive is first and last a public record of private property, which was why the situationists practiced détournement, to treat it not as property but as the commons. Political power requires control of the archive, or better, of memory--as Google surely has figured out.`,
+      `A large program is, to use an analogy of which Minsky is also fond, an intricately connected network of courts of law, that is, of subroutines, to which evidence is transmitted by other subroutines. These courts weigh (evaluate) the data given to them and then transmit their judgments to still other courts. The verdicts rendered by these courts may, indeed, often do, involve decisions about what court has “jurisdiction” over the inter- mediate results then being manipulated. The programmer thus cannot even know the path of decision-making within his own program, let alone what intermediate or final results it will produce. Program formulation is thus rather more like the creation of a bureaucracy than like the construction of a machine of the kind Lord Kelvin may have understood.`
+    ]
   }
+
 ]
 
 export const phrase_library = [
   {
     sign: "entry",
     phrase: ` This website is a collage, a bibliography of the already existing. Nothing here is original except the walk that must be taken for this work to be viewed.`,
+    log: `Welcome to the obscure, the hidden, the concealed. This website is meant to be unraveled in a walk. Highlighted words are signs that lead to other sequences, and conceal within them furhter subetexts.`
   },
   {
     sign: "walk",
-    phrase: `Memory of the machine freezes the image in front of you, frozen for human eyes only.`
+    phrase: `Memory of the machine freezes the image in front of you, frozen for human eyes only.`,
+    log: `also see 'what of speech?'`
   },
   {
     sign: "speech",
-    phrase: `Words are also unities that vibrate and have a life of their own. They have their rhythms, harmonies, melodies. In their roots, they conceal the timeless wisdom of all history to which I am heir.`
+    phrase: `Words are also unities that vibrate and have a life of their own. They have their rhythms, harmonies, melodies. In their roots, they conceal the timeless wisdom of all history to which I am heir.`,
+    log: `also see 'ephemeral with enduring'`
   },
   {
     sign: "memory",
-    phrase: "Software enables a logic of “permanence” that conflates memory with storage, ephemeral with enduring."
+    phrase: "Software enables a logic of “permanence” that conflates memory with storage, ephemeral with enduring.",
+    log: `There are words in my memory. Not only are they instruments for absorbing the virtuality to be expressed, giving it a typeable form, so to speak. Words are also unities that vibrate and have a life of their own. They have their rhythms, harmonies, melodies. In their roots, they conceal the timeless wisdom of all history, to which I am heir. They project a whole framework of connotations. And so, from the words in my memory, I can't just freely choose the ones that "fit" the virtuality to be expressed. First I must listen to them.`
   },
   {
     sign: "ephemeral",
-    phrase: "Memory, like speech, is ephemeral, it leaves a trace that slowly dissipates. To endure it, it must be held together in action"
+    phrase: "Memory, like speech, is ephemeral, it leaves a trace that slowly dissipates. To endure it, it must be held together in action --- the ephemeral has been conflated with the enduring, (see ephemeral with enduring)",
+    log: `I want to bring back the emphasis on action. It might be pushing hard, but I thnink software, as it heavily works through metaphors reduces
+      the workings of the world to representations. This leads to a kind of passivity, a kind of inaction that we see in our generation.`
+
   },
   {
     sign: "conceal",
-    phrase: "Software conceals its source through execution and in doing so, software conceals the machine labour"
+    phrase: "Software conceals its source through execution and in doing so, software conceals the machine labour",
+    log: ``
+  },
+  {
+    sign: "labour",
+    phrase: "Software organises and structures machine labour but more importantly, in the macro sense it also organises power structures in society. ",
+    log: `Ok so what now? We would have to create technologies that acknowledge, rather than make invisible, the multitude of exchanges that take place around us—technologies that refuse the illusory boundary between audience and spectacle, author and character. In addition, we would also have to build ones that question the basic premise that memory should equal
+    storage, that everything read in should be written forward. Importantly, loitering is ephemeral: it inhabits the present. It also can transform ‘open’ private spaces into truly public ones. (Updating to Remain the Same 60)`
   }
-
 ]

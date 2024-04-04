@@ -145,6 +145,10 @@
   position: fixed;
   font-size: .9em;
   transition: opacity 3s, width .3s;
+
+  border: dotted blue 2px;
+  box-shadow: 0 0 50px 15px rgba(0, 28, 255, 0.25);
+  padding: 10px;
 }
 
 #subtext-1 {
