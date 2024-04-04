@@ -20,7 +20,9 @@ export const sequence_library = [
   {
     sign: "speech",
     sequence: ["what", "of", "speech?"],
-    subtext: [],
+    subtext: [
+      `On this website -> writing executes speech -> execution through repetition -> repetition obfuscates the machine labor`
+    ],
     destination: "speech",
   },
   {
@@ -61,8 +63,7 @@ export const sequence_library = [
         the ephemeral with the enduring. Through a process of constant regeneration, of
         constant “ reading, ” it creates an enduring ephemeral that promises to last forever,
         even as it marches toward obsolescence/stasis. `,
-      ` The paradox: what does not change
-        does not endure, yet change —progress (endless upgrades)— ensures that what endures
+      ` The paradox: what does not change does not endure, yet change —progress (endless upgrades)— ensures that what endures
         will fade. Another paradox: digital media’s memory operates by annihilating memory.
         If our machines’ memories are more permanent, if they enable a permanence that we seem to lack, it is because they are constantly refreshed— rewritten — so that their ephemerality endures, so that they may “ store ” the programs that seem to drive them. (check memory of the machine) `
     ],
@@ -78,7 +79,7 @@ export const sequence_library = [
     sign: "timeless",
     sequence: ["timeless", "wisdom", "of", "all", "history"],
     subtext: [`Historically writing was subordinated to speech, phonetic writing signifies speech. However with reproduction of speech as sound, speaking is as easily subordinated to writing (information is considered as writing here, as leaving marks that encode a system of symbols that are then decoded by the computer through computation). Speech does not necessitate the presence of a speaker.`,
-      `On this website, words as they are typed invoke speech. The ephemerality of speech of a fading memory is endured in a repetition that enables the logic of permanence.`
+      `On this website, words as they are typed invoke speech. The ephemerality of speech, of a fading memory is endured in a repetition that enables the logic of permanence.`
     ]
   },
   {
@@ -93,9 +94,16 @@ export const sequence_library = [
     sign: "software_conceals",
     sequence: ["software", "conceals", "its", "source"],
     subtext: [
-
       `Not only does programmability mean that [objects] are manipulable in new ways; it also means that one’s computer constantly acts in ways beyond one’s control. To see software as merely transcoding erases the computation necessary for computers to run. The computer’s duplicitous reading does not simply translate or transcode code into text/image/sound, or vice versa; its reading — which conflates reading and writing — also partakes in other invisible readings.`,
-      ` Devices drive the need for "memory," a regenerating and degenerating archive that paradoxically, as Geoffrey C. Bowker notes, annihilates memory by substituting generalized patterns for particular memo-ries. This does not simply erase human agency, however, but rather fosters new dreams of human intervention, action, and incantation. It does not absolve us of responsibility, but instead calls on us to respond constantly, to save actively, if we are to save at all.`
+      `Devices drive the need for "memory," a regenerating and degenerating archive that paradoxically, as Geoffrey C. Bowker notes, annihilates memory by substituting generalized patterns for particular memo-ries. This does not simply erase human agency, however, but rather fosters new dreams of human intervention, action, and incantation. It does not absolve us of responsibility, but instead calls on us to respond constantly, to save actively, if we are to save at all.`
+    ]
+  },
+  {
+    sign: "software_conceals_labour",
+    sequence: ["conceals", "the", "machine", "labour"],
+    subtext: [
+      `The separation of software from hardware also enables the separation of certain programming tasks in software from each other. Hence the rise of structured programming as a way of managing quality and labour discipline when programming becomes an industry. Structured programming enables a division of labour and secures the running of the machine from routine programming tasks.`,
+      `The result might be less efficient from the point of view of organising the "work" of the machine but more efficient from the point of view of organising human labour. Structured programming recruits the machine into the task of managing itself. It is a step towards object-oriented program-ming, which further hides the machine, and also the interior of other "Objects", from the ones with which the programmer is tasked within the division of labor.`
     ]
   },
   {
@@ -111,8 +119,7 @@ export const sequence_library = [
 export const phrase_library = [
   {
     sign: "entry",
-    phrase: ` This website is a collage, a bibliography of the already existing.
-    Nothing here is original except the walk that must be taken for this work to be viewed.`,
+    phrase: ` This website is a collage, a bibliography of the already existing. Nothing here is original except the walk that must be taken for this work to be viewed.`,
   },
   {
     sign: "walk",
@@ -132,7 +139,7 @@ export const phrase_library = [
   },
   {
     sign: "conceal",
-    phrase: "Software conceals its source through execution and in doing so, software conceals the machine’s labour."
+    phrase: "Software conceals its source through execution and in doing so, software conceals the machine labour"
   }
 
 ]
