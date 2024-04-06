@@ -57,6 +57,7 @@ export const sequence_library = [
     sign: "ephemeral",
     sequence: ["ephemeral", "with", "enduring"],
     destination: "ephemeral",
+    memory: "ephemeral",
     subtext: [
       ` Software — as instructions and information (the difference between the two being
         erased by and in memory)— not only embodies the always already there, it also
@@ -86,6 +87,8 @@ export const sequence_library = [
   {
     sign: "conceal",
     sequence: ["conceal"],
+    destination: "conceal",
+    memory: "conceal",
     subtext: [
       `Language wants to be overlooked. But it wants to be overlooked precisely so that it can more effectively ‘over look’, that is, so that it can better function as a syntactic and semantic system designed to specify and articulate while remaining detached from the very processes of specificity and articulation.`,
       `Software is axiomatic. As a first principle, it fastens in place a certain logic of cause and effect, a causal pleasure that erases execution and reduces programming to an act of writing.`
@@ -103,6 +106,7 @@ export const sequence_library = [
     sign: "software_conceals_labour",
     sequence: ["conceals", "the", "machine", "labour"],
     destination: "labour",
+    memory: "labour",
     subtext: [
       `The separation of software from hardware also enables the separation of certain programming tasks in software from each other. Hence the rise of structured programming as a way of managing quality and labour discipline when programming becomes an industry. Structured programming enables a division of labour and secures the running of the machine from routine programming tasks.`,
       `The result might be less efficient from the point of view of organising the "work" of the machine but more efficient from the point of view of organising human labour. Structured programming recruits the machine into the task of managing itself. It is a step towards object-oriented program-ming, which further hides the machine, and also the interior of other "Objects", from the ones with which the programmer is tasked within the division of labor.`
@@ -154,7 +158,6 @@ export const phrase_library = [
     phrase: "Memory, like speech, is ephemeral, it leaves a trace that slowly dissipates. To endure it, it must be held together in action --- the ephemeral has been conflated with the enduring",
     log: `I want to bring back the emphasis on action. It might be pushing hard, but I thnink software, as it heavily works through metaphors reduces
       the workings of the world to representations. This leads to a kind of passivity, a kind of inaction that we see in our generation.`
-
   },
   {
     sign: "conceal",

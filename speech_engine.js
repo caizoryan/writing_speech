@@ -16,7 +16,7 @@ const play_sample = (audioBuffer) => {
   const source = audioContext.createBufferSource();
 
   const gainNode = audioContext.createGain();
-  gainNode.gain.value = .3;
+  gainNode.gain.value = .7;
 
   source.playbackRate.value = calculate_playback();
   source.buffer = audioBuffer;

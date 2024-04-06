@@ -14,17 +14,28 @@ let memory_library = [
   },
   {
     sign: "memory",
-    src: "./memory/memory3.mp4",
-    timer_normal: 4500,
-    timer: 4500,
-  },
-
-  {
-    sign: "labour",
     src: "./memory/memory4.mp4",
     timer_normal: 4000,
     timer: 4000,
   },
+  {
+    sign: "ephemeral",
+    src: "./memory/memory7.mp4",
+    timer_normal: 4000,
+    timer: 4000,
+  },
+  {
+    sign: "conceal",
+    src: "./memory/memory9.mp4",
+    timer_normal: 24000,
+    timer: 24000,
+  },
+  {
+    sign: "labour",
+    src: "./memory/memory10.mp4",
+    timer_normal: 10000,
+    timer: 10000,
+  }
 ]
 
 const background = new Audio("./soundtrack.mp3")
@@ -228,7 +239,7 @@ function play_video(ctx, video) {
 
   let w = canvas.width
   let h = canvas.height
-  ctx.drawImage(video, w / 4, h / 4, w / 2, h / 2)
+  ctx.drawImage(video, w / 8, h / 8, w - (w / 4), h - (h / 4))
 }
 
 const canvas_renderer = () => {
